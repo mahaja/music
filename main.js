@@ -1,21 +1,87 @@
-	function fancyTimeFormat(time)
-{   
-    // Hours, minutes and seconds
-    var hrs = ~~(time / 3600);
-    var mins = ~~((time % 3600) / 60);
-    var secs = time % 60;
+                                      var songs = [{
+										'name': 'Closer song',
+										'artist': 'ft.Halsey',
+										'album': 'The Chainsmokers',
+										'duration': '2:56',
+									   'fileName': 'song1.mp3',
+									   'image' : 'song1.jpg'
+									},
+									{
+										'name': 'Humma Song',
+										'artist': 'Shraddha Kapoor',
+										'album': 'Ok Jaanu',
+										'duration': '3:15',
+										'fileName': 'song2.mp3',
+										'image' : 'song2.jpg'
+									},
+									{
+										'name': 'Na Ja Na Ja',
+										'artist': 'Pav Dharia',
+										'album': 'Na Ja Na Ja',
+										'duration': '2:34',
+										'fileName': 'song3.mp3',
+										'image' : 'song3.jpg'
+									},
+									{
+										'name': 'Dont let me down',
+										'artist': 'ft.Daya',
+										'album': 'The Chainsmokers',
+										'duration': '2:29',
+										'fileName': 'song4.mp3',
+										'image' : 'song4.jpg'
+									},
+									 {
+										'name': 'Cheap Thrills',
+										'artist': 'Sia ft.Sean',
+										'album': 'Cheap Thrills',
+										'duration': '2:56',
+									   'fileName': 'song5.mp3',
+									   'image' : 'song5.jpg'
+									},
+									{
+										'name': 'Shape of you',
+										'artist': 'Ed Sheeran',
+										'album': 'Shape of you',
+										'duration': '3:15',
+										'fileName': 'song6.mp3',
+										'image' : 'song6.jpg'
+									},
+									{
+										'name': 'Tove Lo',
+										'artist': 'TEGOS.RU',
+										'album': 'Tove Lo',
+										'duration': '2:34',
+										'fileName': 'song7.mp3',
+										'image' : 'song7.jpg'
+									},
+									{
+										'name': 'Worth it',
+										'artist': 'Fifth Harmony',
+										'album': 'Worth it ft.kid lnk',
+										'duration': '2:29',
+										'fileName': 'song8.mp3',
+										'image' : 'song8.jpg'
+									}]
+									
+									
+									  function fancyTimeFormat(time)
+					{   
+						// Hours, minutes and seconds
+						var hrs = ~~(time / 3600);
+						var mins = ~~((time % 3600) / 60);
+						var secs = time % 60;
 
-    // Output like "1:01" or "4:03:59" or "123:03:59"
-    var ret = "";
+						// Output like "1:01" or "4:03:59" or "123:03:59"
+						var ret = "";
 
-    if (hrs > 0) {
-        ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
-    }
+						if (hrs > 0) {
+							ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
+						}
 
-    ret += "" + mins + ":" + (secs < 10 ? "0" : "");
-    ret += "" + secs;
-    return ret;
-}
+						ret += "" + mins + ":" + (secs < 10 ? "0" : "");
+						ret += "" + secs;
+						return ret;
+					}
 	
 	
 	
@@ -33,6 +99,12 @@
 				song.pause();
 				}
 				} 
+				     function changeCurrentSongDetails(songObj) {
+								// Code goes here
+								 $('.current-song-image').attr('src','img/'+ songObj.image)
+								 $('.current-song-name').text(songObj.name)
+								 $('.current-song-album').text(songObj.album)
+							}
 				
 				        function updateCurrentTime() {
 						var song = document.querySelector('audio');
@@ -45,7 +117,8 @@
 					}
 					
 					
-					function addSongNameClickEvent(songName,position) {
+					function addSongNameClickEvent(songObj,position) {
+				    var songName = songObj.fileName; // New Variable 
 					var id = '#song' + position;
 							$(id).click(function() {
 							var audio = document.querySelector('audio');
@@ -57,12 +130,16 @@
 							else {
 							audio.src = songName;
 							toggleSong();
+							changeCurrentSongDetails(songObj); // Function Call
 							}
 							});
                         }
 
 						
 				                window.onload = function() {
+									
+								changeCurrentSongDetails(songs[0]);
+									
 					         	updateCurrentTime();
 								setInterval(function() {
 								updateCurrentTime();
@@ -75,62 +152,7 @@
                                 // var artistList = ['Neha Kakkar, Monali Thakur, Ikka Singh, Dev Negi','Badshah, Jubin Nautiyal, Shashaa Tirupati','Arijit Singh','Nakash Aziz, Arijit Singh, Badshah, Jonita Gandhi','Neha Kakkar, Monali Thakur, Ikka Singh, Dev Negi','Badshah, Jubin Nautiyal, Shashaa Tirupati','Arijit Singh','Nakash Aziz, Arijit Singh, Badshah, Jonita Gandhi'];
 							    //var albumList = ['Badrinath ki Dulhania','Ok Jaanu','Befikre','Ae Dil Hai Mushkil','Badrinath ki Dulhania','Ok Jaanu','Befikre','Ae Dil Hai Mushkil'];
                                // var durationList = ['2:56','3:15','2:34','2:29','2:56','3:15','2:34','2:29'];
-									var songs = [{
-										'name': 'Closer song',
-										'artist': 'Neha Kakkar, Monali Thakur, Ikka Singh, Dev Negi',
-										'album': 'Badrinath ki Dulhania',
-										'duration': '2:56',
-									   'fileName': 'song1.mp3'
-									},
-									{
-										'name': 'Humma Song',
-										'artist': 'Badshah, Jubin Nautiyal, Shashaa Tirupati',
-										'album': 'Ok Jaanu',
-										'duration': '3:15',
-										'fileName': 'song2.mp3'
-									},
-									{
-										'name': 'Na Ja Na Ja',
-										'artist': 'Arijit Singh',
-										'album': 'Befikre',
-										'duration': '2:34',
-										'fileName': 'song3.mp3'
-									},
-									{
-										'name': 'Dont let me down',
-										'artist': 'Nakash Aziz, Arijit Singh, Badshah, Jonita Gandhi',
-										'album': 'Ae Dil Hai Mushkil',
-										'duration': '2:29',
-										'fileName': 'song4.mp3'
-									},
-									 {
-										'name': 'Cheap Thrills',
-										'artist': 'Neha Kakkar, Monali Thakur, Ikka Singh, Dev Negi',
-										'album': 'Badrinath ki Dulhania',
-										'duration': '2:56',
-									   'fileName': 'song5.mp3'
-									},
-									{
-										'name': 'Shape of you',
-										'artist': 'Badshah, Jubin Nautiyal, Shashaa Tirupati',
-										'album': 'Ok Jaanu',
-										'duration': '3:15',
-										'fileName': 'song6.mp3'
-									},
-									{
-										'name': 'Tove Lo',
-										'artist': 'Arijit Singh',
-										'album': 'Befikre',
-										'duration': '2:34',
-										'fileName': 'song7.mp3'
-									},
-									{
-										'name': 'Worth it',
-										'artist': 'Nakash Aziz, Arijit Singh, Badshah, Jonita Gandhi',
-										'album': 'Ae Dil Hai Mushkil',
-										'duration': '2:29',
-										'fileName': 'song8.mp3'
-									}]
+								
 									
 								for(var i =0; i < songs.length;i++) {
 									var obj = songs[i];
@@ -140,7 +162,7 @@
 									song.find('.song-artist').text(obj.artist);
 									song.find('.song-album').text(obj.album);
 									song.find('.song-length').text(obj.duration);
-									addSongNameClickEvent(obj.fileName,i+1);
+									addSongNameClickEvent(obj,i+1);
     }								 
 								 
 								//addSongNameClickEvent(fileNames[0],1);
@@ -155,7 +177,9 @@
 								//addSongNameClickEvent(fileNames[i],i+1);
 							         //} 
 								
-									
+									$('#songs').DataTable({
+									paging: false
+								});
 									
 		                          }
 				
