@@ -170,14 +170,13 @@ h1 {
 }
 .current-song-wrapper {
     position: absolute;
-    bottom: 15;
+    bottom: 0;
     display: flex;
 }
 
 .current-song-image {
-    height: 80px;
-    width: 90px;
-	margin-top: 10px;
+    height: 100px;
+    width: 100px;
     margin-right: 1rem;
 }
 
@@ -209,5 +208,10 @@ table.dataTable tbody tr {
 	outline:none;
 	border:none;
 }
-        
+     .player-buttons .fa {
+    margin-right: 2rem;
+}
 
+.fa.disabled {
+    color: gray;
+}   

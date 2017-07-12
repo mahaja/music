@@ -1,11 +1,12 @@
                                       var songs = [{
-										'name': 'Closer song',
-										'artist': 'ft.Halsey',
-										'album': 'The Chainsmokers',
+										'name': 'Cheap Thrills',
+										'artist': 'Sia ft.Sean',
+										'album': 'Cheap Thrills',
 										'duration': '2:56',
-									   'fileName': 'song1.mp3',
-									   'image' : 'song1.jpg'
+									    'fileName': 'song5.mp3',
+									    'image' : 'song5.jpg'
 									},
+									
 									{
 										'name': 'Humma Song',
 										'artist': 'Shraddha Kapoor',
@@ -15,13 +16,24 @@
 										'image' : 'song2.jpg'
 									},
 									{
-										'name': 'Na Ja Na Ja',
+									    'name': 'Na Ja Na Ja',
 										'artist': 'Pav Dharia',
 										'album': 'Na Ja Na Ja',
 										'duration': '2:34',
 										'fileName': 'song3.mp3',
 										'image' : 'song3.jpg'
 									},
+										
+									{
+										'name': 'Love Me Like You Do',
+										'artist': 'Elli Goulding',
+										'album': 'Love Me Like You Do',
+										'duration': '4:13',
+										'fileName': 'song9.mp3',
+										'image' : 'song9.png'
+									},
+					
+										
 									{
 										'name': 'Dont let me down',
 										'artist': 'ft.Daya',
@@ -30,14 +42,7 @@
 										'fileName': 'song4.mp3',
 										'image' : 'song4.jpg'
 									},
-									 {
-										'name': 'Cheap Thrills',
-										'artist': 'Sia ft.Sean',
-										'album': 'Cheap Thrills',
-										'duration': '2:56',
-									   'fileName': 'song5.mp3',
-									   'image' : 'song5.jpg'
-									},
+									
 									{
 										'name': 'Shape of you',
 										'artist': 'Ed Sheeran',
@@ -61,7 +66,11 @@
 										'duration': '2:29',
 										'fileName': 'song8.mp3',
 										'image' : 'song8.jpg'
-									}]
+									}]	
+										var currentSongNumber = 1;
+										var willLoop = 0;
+										var willShuffle = 0; // will use this soon
+									
 									
 									
 									  function fancyTimeFormat(time)
@@ -134,6 +143,14 @@
 							}
 							});
                         }
+						
+						//function updateTimer(){
+							//var song =document.querySelector('audio');
+							//var ct=song.currentTime;
+							//var td=song.duration;
+							//var percentage=(ct/td)*100;
+							//$("#progress-filled").css('width',percentage+"%");
+						//}
 
 						
 				                window.onload = function() {
@@ -145,8 +162,13 @@
 								updateCurrentTime();
 								},1000);
 								
+								//setInterval(function(){
+									//udateTimer();
+								//},100);
+								//}
+								
 								 
-								// var songList = ['closer song', 'Humma Song', 'Na Ja Na Ja', 'Dont let me down', 'Cheap Thrills', 'Shape of you', 'Tove Lo', 'Worth it']; 
+								// var songList = ['Closer song', 'Humma Song', 'Na Ja Na Ja', 'Dont let me down', 'Cheap Thrills', 'Shape of you', 'Tove Lo', 'Worth it']; 
 								// var fileNames = ['song1.mp3','song2.mp3','song3.mp3','song4.mp3', 'song5.mp3', 'song6.mp3', 'song7.mp3', 'song8.mp3'];
 								// var artistList = ['Artist #1', 'Artist #2', 'Artist #3', 'Artist #4', 'Artist #5', 'Artist #6', 'Artist #7', 'Artist #8'];
                                 // var artistList = ['Neha Kakkar, Monali Thakur, Ikka Singh, Dev Negi','Badshah, Jubin Nautiyal, Shashaa Tirupati','Arijit Singh','Nakash Aziz, Arijit Singh, Badshah, Jonita Gandhi','Neha Kakkar, Monali Thakur, Ikka Singh, Dev Negi','Badshah, Jubin Nautiyal, Shashaa Tirupati','Arijit Singh','Nakash Aziz, Arijit Singh, Badshah, Jonita Gandhi'];
@@ -178,11 +200,15 @@
 							         //} 
 								
 									$('#songs').DataTable({
-									paging: false
+									"scrollY": "200px",
+									"scrollCollapse":true,
+									"paging": false
 								});
 									
 		                          }
-				
+								  
+								  
+								 
 				
     $('.welcome-screen button').on('click', function() {
         var name = $('#name-input').val();
@@ -199,9 +225,20 @@
 							toggleSong();
 						});
 						
-						
-						$('body').on('keypress', function(event) {
-									if (event.keyCode == 32) {
+									$('body').on('keypress',function(event) {
+									var target = event.target;
+									if (event.keyCode == 32 && target.tagName !='INPUT')
+									{
 										toggleSong();
 									}
+								});
+								
+								$('.fa-repeat').on('click',function() {
+								$('.fa-repeat').toggleClass('disabled')
+								willLoop = 1 - willLoop;
+                             });
+
+								$('.fa-random').on('click',function() {
+									$('.fa-random').toggleClass('disabled')
+									willShuffle = 1 - willShuffle;
 								});
