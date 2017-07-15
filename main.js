@@ -2,7 +2,7 @@
 										'name': 'Cheap Thrills',
 										'artist': 'Sia ft.Sean',
 										'album': 'Cheap Thrills',
-										'duration': '2:56',
+										'duration': '3:31',
 									    'fileName': 'song5.mp3',
 									    'image' : 'song5.jpg'
 									},
@@ -19,7 +19,7 @@
 									    'name': 'Na Ja Na Ja',
 										'artist': 'Pav Dharia',
 										'album': 'Na Ja Na Ja',
-										'duration': '2:34',
+										'duration': '3:28',
 										'fileName': 'song3.mp3',
 										'image' : 'song3.jpg'
 									},
@@ -38,7 +38,7 @@
 										'name': 'Dont let me down',
 										'artist': 'ft.Daya',
 										'album': 'The Chainsmokers',
-										'duration': '2:29',
+										'duration': '3:28',
 										'fileName': 'song4.mp3',
 										'image' : 'song4.jpg'
 									},
@@ -47,7 +47,7 @@
 										'name': 'Shape of you',
 										'artist': 'Ed Sheeran',
 										'album': 'Shape of you',
-										'duration': '3:15',
+										'duration': '3:53',
 										'fileName': 'song6.mp3',
 										'image' : 'song6.jpg'
 									},
@@ -55,7 +55,7 @@
 										'name': 'Tove Lo',
 										'artist': 'TEGOS.RU',
 										'album': 'Tove Lo',
-										'duration': '2:34',
+										'duration': '2:32',
 										'fileName': 'song7.mp3',
 										'image' : 'song7.jpg'
 									},
@@ -63,7 +63,7 @@
 										'name': 'Worth it',
 										'artist': 'Fifth Harmony',
 										'album': 'Worth it ft.kid lnk',
-										'duration': '2:29',
+										'duration': '3:44',
 										'fileName': 'song8.mp3',
 										'image' : 'song8.jpg'
 									}]	
@@ -71,7 +71,10 @@
 										var willLoop = 0;
 										var willShuffle = 0; // will use this soon
 									
-									
+									function timeJump() {
+									var song = document.querySelector('audio')
+									song.currentTime = song.duration - 5;
+								}
 									
 									  function fancyTimeFormat(time)
 					{   
@@ -92,7 +95,13 @@
 						return ret;
 					}
 	
-	
+							function updateTimer(){
+							var song =document.querySelector('audio');
+							var ct=song.currentTime;
+							var td=song.duration;
+							var percentage=(ct/td)*100;
+							$(".progress-filled").css('width',percentage+"%");
+						}
 	
 	
 	function toggleSong() {
@@ -144,13 +153,11 @@
 							});
                         }
 						
-						//function updateTimer(){
-							//var song =document.querySelector('audio');
-							//var ct=song.currentTime;
-							//var td=song.duration;
-							//var percentage=(ct/td)*100;
-							//$("#progress-filled").css('width',percentage+"%");
-						//}
+						        function randomExcluded(min, max, excluded) {
+								var n = Math.floor(Math.random() * (max-min) + min);
+								if (n >= excluded) n++;
+								return n;
+							    }
 
 						
 				                window.onload = function() {
@@ -160,12 +167,9 @@
 					         	updateCurrentTime();
 								setInterval(function() {
 								updateCurrentTime();
-								},1000);
-								
-								//setInterval(function(){
-									//udateTimer();
-								//},100);
-								//}
+								updateTimer();
+								},1000);				
+								}
 								
 								 
 								// var songList = ['Closer song', 'Humma Song', 'Na Ja Na Ja', 'Dont let me down', 'Cheap Thrills', 'Shape of you', 'Tove Lo', 'Worth it']; 
@@ -205,14 +209,14 @@
 									"paging": false
 								});
 									
-		                          }
+		                          
 								  
 								  
 								 
 				
     $('.welcome-screen button').on('click', function() {
         var name = $('#name-input').val();
-        if (name.length > 2) {
+        if (name.length > 3) {
             var message = "Welcome, " + name;
             $('.main .user-name').text(message);
             $('.welcome-screen').addClass('hidden');
@@ -242,3 +246,51 @@
 									$('.fa-random').toggleClass('disabled')
 									willShuffle = 1 - willShuffle;
 								});
+								
+								
+								$('audio').on('ended',function() {
+								var audio = document.querySelector('audio');
+								if(currentSongNumber < 4) {
+									var nextSongObj = songs[currentSongNumber];
+									audio.src = nextSongObj.fileName; // Change Soure
+									toggleSong(); // Play Next Song
+									changeCurrentSongDetails(nextSongObj); // Update Image
+									currentSongNumber = currentSongNumber + 1; // Change State
+								}
+								else {
+									$('.play-icon').removeClass('fa-pause').addClass('fa-play');
+									audio.currentTime = 0;
+								}
+							});
+							
+							
+							
+								$('audio').on('ended',function() {
+								var audio = document.querySelector('audio');
+								if (willShuffle == 1) {
+									var nextSongNumber = randomExcluded(1,8,currentSongNumber); // Calling our function from Stackoverflow
+									var nextSongObj = songs[nextSongNumber-1];
+									audio.src = nextSongObj.fileName;
+									toggleSong();
+									changeCurrentSongDetails(nextSongObj);
+									currentSongNumber = nextSongNumber;
+								}
+								else if(currentSongNumber < 8) {
+									var nextSongObj = songs[currentSongNumber];
+									audio.src = nextSongObj.fileName;
+									toggleSong();
+									changeCurrentSongDetails(nextSongObj);
+									currentSongNumber = currentSongNumber + 1;
+								}
+								else if(willLoop == 1) {
+									var nextSongObj = songs[0];
+									audio.src = nextSongObj.fileName;
+									toggleSong();
+									changeCurrentSongDetails(nextSongObj);
+									currentSongNumber =  1;
+								}
+								else {
+									$('.play-icon').removeClass('fa-pause').addClass('fa-play');
+									audio.currentTime = 0;
+								}
+							});
