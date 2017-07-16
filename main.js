@@ -27,7 +27,7 @@
 									{
 										'name': 'Love Me Like You Do',
 										'artist': 'Elli Goulding',
-										'album': 'Love Me Like You Do',
+										'album': 'Fifty shades of gey',
 										'duration': '4:13',
 										'fileName': 'song9.mp3',
 										'image' : 'song9.png'
@@ -70,6 +70,22 @@
 										var currentSongNumber = 1;
 										var willLoop = 0;
 										var willShuffle = 0; // will use this soon
+										var willmute=1;
+										function mute(){
+											var song=document.querySelector('audio');
+											if(song.muted)
+											{
+												song.muted=false;
+											}
+											else
+											{
+												song.muted=true;
+										}
+										}
+										
+										
+										
+										
 									
 									function timeJump() {
 									var song = document.querySelector('audio')
@@ -251,6 +267,15 @@
 										toggleSong();
 									}
 								});
+								
+								
+								
+								$('.fa-volume-up').on('click',function() {
+								$('.fa-volume-up').toggleClass('disabled')
+								willmute = 1 - willmute;
+								mute();
+                             });
+							 
 								
 								$('.fa-repeat').on('click',function() {
 								$('.fa-repeat').toggleClass('disabled')
