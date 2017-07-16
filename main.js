@@ -102,6 +102,16 @@
 							var percentage=(ct/td)*100;
 							$(".progress-filled").css('width',percentage+"%");
 						}
+						
+						
+						
+						
+						function setvolume(){
+							var song = document.querySelector('audio');
+							song.volume = slider.value/100;
+							}
+						
+						
 	
 	
 	function toggleSong() {
@@ -123,6 +133,10 @@
 								 $('.current-song-name').text(songObj.name)
 								 $('.current-song-album').text(songObj.album)
 							}
+						
+						
+							
+							
 				
 				        function updateCurrentTime() {
 						var song = document.querySelector('audio');
@@ -159,6 +173,7 @@
 								return n;
 							    }
 
+						
 						
 				                window.onload = function() {
 									
@@ -241,11 +256,19 @@
 								$('.fa-repeat').toggleClass('disabled')
 								willLoop = 1 - willLoop;
                              });
+							 
+							
+							 
 
 								$('.fa-random').on('click',function() {
 									$('.fa-random').toggleClass('disabled')
 									willShuffle = 1 - willShuffle;
 								});
+								
+								 $('#slider').on('mousemove',function(){
+								 setvolume();
+							 });
+							
 								
 								
 								$('audio').on('ended',function() {
@@ -294,3 +317,7 @@
 									audio.currentTime = 0;
 								}
 							});
+							
+							
+							
+							 
