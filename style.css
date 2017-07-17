@@ -11,7 +11,7 @@ body,html {
 
 .keys {
   display: flex;
-  flex: 1;
+  flex: 2;
   min-height: 100vh;
   align-items: center;
   justify-content: center;
@@ -20,7 +20,7 @@ body,html {
 
 .key {
   border: .4rem solid black;
-  border-radius: .5rem;
+  border-radius: 35px;
   margin: 1rem;
   font-size: 1.5rem;
   padding: 1rem .5rem;
@@ -29,7 +29,8 @@ body,html {
   text-align: center;
   color: white;
   background: rgba(0,0,0,0.4);
-  text-shadow: 0 0 .5rem black;
+  text-shadow: 0 0 .5rem red;
+  
   
 }
 
@@ -41,13 +42,20 @@ body,html {
 
 kbd {
   display: block;
-  font-size: 4rem;
+  font-size: 5rem;
   
 }
 
 .sound {
   font-size: 1.5rem;
   text-transform: uppercase;
-  letter-spacing: .1rem;
+  letter-spacing: .2rem;
   color: #ffc600;
+}
+.previouspage
+{
+	float:right;
+	margin-top:-30px;
+	margin-right:15px;
+	border-radius:15px;
 }

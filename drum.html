@@ -6,11 +6,11 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+                   
 
   <div class="keys">
     <div data-key="65" id='drum1' class="key">
-      <kbd >A</kbd>
+      <kbd>A</kbd>
       <span class="sound">clap</span>
     </div>
     <div data-key="83" id='drum2' class="key">
@@ -58,44 +58,68 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 
+                     <div class="next-page">
+						<button  class="previouspage"><a href="index.html"> Home Page </button>
+						
+                    </div>
+  
+  
    <script src="jquery.js">
    </script>
    <script >
    
         $('#drum1').on('click',function(){
-		document.querySelector('audio[65]').play();
+		$('#drum1').addClass('playing');
+		audio = "sounds/clap.wav"
+		document.querySelector('audio').play();
 		});
 		
 		 $('#drum2').on('click',function(){
-		 document.querySelector('audio[83]').play();
+		 $('#drum2').addClass('playing');
+		 audio = "sounds/hihat.wav"
+		 document.querySelector('audio').play();
 		});
 		
 		 $('#drum3').on('click',function(){
-		 document.querySelector('audio[68]').play();
+		 $('#drum3').addClass('playing');
+		 audio = "sounds/kick.wav"
+		 document.querySelector('audio').play();
 		});
 		
 		 $('#drum4').on('click',function(){
-		 document.querySelector('audio[70]').play();
+		 $('#drum4').addClass('playing');
+		 audio = "sounds/openhat.wav"
+		 document.querySelector('audio').play();
 		});
 		
 		 $('#drum5').on('click',function(){
-		 document.querySelector('audio[71]').play();
+		 $('#drum5').addClass('playing');
+		 audio = "sounds/boom.wav"
+		 document.querySelector('audio').play();
 		});
 		
 		 $('#drum6').on('click',function(){
-		 document.querySelector('audio[72]').play();
+		 $('#drum6').addClass('playing');
+		 audio = "sounds/ride.wav"
+		 document.querySelector('audio').play();
 		});
 		
 		 $('#drum7').on('click',function(){
-		 document.querySelector('audio[74]').play();
+		 $('#drum7').addClass('playing');
+		 audio = "sounds/snare.wav"
+		 document.querySelector('audio').play();
 		});
 		
 		 $('#drum8').on('click',function(){
-		 document.querySelector('audio[75]').play();
+		 $('#drum8').addClass('playing');
+		 audio = "sounds/tom.wav"
+		 document.querySelector('audio').play();
 		});
 		
 		 $('#drum9').on('click',function(){
-		 document.querySelector('audio[76]').play();
+		 $('#drum9').addClass('playing');
+		 audio = "sounds/tink.wav"
+		 document.querySelector('audio').play();
 		});
 		
 		
