@@ -253,8 +253,10 @@
             $('.welcome-screen').addClass('hidden');
             $('.main').removeClass('hidden');
         } else {
+			var error='type name more than three letters';
             $('#name-input').addClass('error');
-        }
+			$('.error-message').removeClass('hidden').text(error); 
+		}			
     });
 						$('.play-icon').on('click', function() {
 							toggleSong();

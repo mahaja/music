@@ -23,7 +23,7 @@ h1 {
     height: 100%;
     width: 100%;
 	background:url("https://d1a6a9r46cnyll.cloudfront.net/f6b40e83d3a1bdc0a196a2d4db237ca5333d3fd4/687474703a2f2f706c7567696e732e7468656d6576616e2e636f6d2f776562676c2d6261636b67726f756e642d76632d6164646f6e2f77702d636f6e74656e742f75706c6f6164732f73697465732f322f323031362f31312f7061727469636c65735f737072697465732e676966") bottom center;
-  
+    background-size:cover;
 }
 
 .welcome-screen {
@@ -236,4 +236,13 @@ input #slider{
 .volumeicon{
 	margin-left:30px;
 	margin-right:15px;
+}
+.error-message{
+	background-color:white;
+	border-radius:2px;
+
+	color:black;
+	font-size:20px;
+	position:relative;
+	top:3px;
 }
