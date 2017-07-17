@@ -19,12 +19,12 @@ body,html {
 }
 
 .key {
-  border: .4rem solid black;
+  border: .4rem solid #ffc600;
   border-radius: 35px;
   margin: 1rem;
   font-size: 1.5rem;
   padding: 1rem .5rem;
-  transition: all 1.07s ease;
+  transition: all 0.09s ease;
   width: 10rem;
   text-align: center;
   color: white;
@@ -35,9 +35,9 @@ body,html {
 }
 
 .playing {
-  transform: scale(2.2);
-  border-color: #ffc600;
-  box-shadow: 0 0 1rem #ffc600;
+  transform: scale(1.7);
+  border-color: black;
+  box-shadow: 0 0 1rem black;
 }
 
 kbd {
@@ -58,4 +58,14 @@ kbd {
 	margin-top:-30px;
 	margin-right:15px;
 	border-radius:15px;
+}
+.a{
+	position:relative !important;
+	top:120px !important;
+	left:30px !important;
+}
+.s{
+	position:relative !important;
+	top:-30px !important;
+	left:30px !important;
 }
