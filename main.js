@@ -6,6 +6,14 @@
 									    'fileName': 'song5.mp3',
 									    'image' : 'song5.jpg'
 									},
+									{
+										'name': 'Dont let me down',
+										'artist': 'ft.Daya',
+										'album': 'The Chainsmokers',
+										'duration': '3:28',
+										'fileName': 'song4.mp3',
+										'image' : 'song4.jpg'
+									},
 									
 									{
 										'name': 'Humma Song',
@@ -15,15 +23,7 @@
 										'fileName': 'song2.mp3',
 										'image' : 'song2.jpg'
 									},
-									{
-									    'name': 'Na Ja Na Ja',
-										'artist': 'Pav Dharia',
-										'album': 'Na Ja Na Ja',
-										'duration': '3:28',
-										'fileName': 'song3.mp3',
-										'image' : 'song3.jpg'
-									},
-										
+									
 									{
 										'name': 'Love Me Like You Do',
 										'artist': 'Elli Goulding',
@@ -32,15 +32,14 @@
 										'fileName': 'song9.mp3',
 										'image' : 'song9.png'
 									},
-					
-										
+									
 									{
-										'name': 'Dont let me down',
-										'artist': 'ft.Daya',
-										'album': 'The Chainsmokers',
+									    'name': 'Na Ja Na Ja',
+										'artist': 'Pav Dharia',
+										'album': 'Na Ja Na Ja',
 										'duration': '3:28',
-										'fileName': 'song4.mp3',
-										'image' : 'song4.jpg'
+										'fileName': 'song3.mp3',
+										'image' : 'song3.jpg'
 									},
 									
 									{
@@ -59,6 +58,7 @@
 										'fileName': 'song7.mp3',
 										'image' : 'song7.jpg'
 									},
+									
 									{
 										'name': 'Worth it',
 										'artist': 'Fifth Harmony',
@@ -169,6 +169,7 @@
 				    var songName = songObj.fileName; // New Variable 
 					var id = '#song' + position;
 							$(id).click(function() {
+								Playingnumber = position-1;
 							var audio = document.querySelector('audio');
 							var currentSong = audio.src;
 							if(currentSong.search(songName) != -1)
@@ -182,6 +183,92 @@
 							}
 							});
                         }
+						
+						
+						
+						
+						var Playingnumber = 0  ;
+						var shuffle=0;
+						var equal = 0;
+
+
+
+
+						function changeSong() 
+						{
+						var music =  songs[Playingnumber].fileName;
+						var song = document.querySelector("audio");
+						song.src = music;
+						toggleSong();
+						changeCurrentSongDetails(songs[Playingnumber])
+						}
+
+
+
+
+
+
+						$(".fa-step-forward").click(function(){
+
+						if(shuffle==1)
+						{
+						var audio = document.querySelector('audio');
+						var nextSongNumber = randomExcluded(0,8,Playingnumber); // Calling our function from Stackoverflow
+
+						var nextSongObj = songs[nextSongNumber];
+						audio.src = nextSongObj.fileName;
+						toggleSong();
+						changeCurrentSongDetails(nextSongObj);
+						Playingnumber = nextSongNumber;
+
+
+						}
+
+
+						else {
+
+						if(Playingnumber == songs.length-1){
+						Playingnumber = 0;
+						changeSong();
+						}
+
+						else {
+						console.log("two");
+						console.log(Playingnumber);
+						Playingnumber++;
+						changeSong();
+						}
+
+						}
+
+						})
+
+
+
+
+						$(".fa-step-backward").click(function(){
+
+						if(Playingnumber == 0){
+						console.log("one");
+						Playingnumber = (songs.length-1);
+						changeSong();
+
+
+
+
+						}
+
+						else {
+						console.log("two");
+						console.log(Playingnumber);
+						Playingnumber--;
+						changeSong();
+						}
+
+
+
+
+						})
 						
 						        function randomExcluded(min, max, excluded) {
 								var n = Math.floor(Math.random() * (max-min) + min);
