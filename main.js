@@ -67,10 +67,12 @@
 										'fileName': 'song8.mp3',
 										'image' : 'song8.jpg'
 									}]	
+									    var Playingnumber = 0;
 										var currentSongNumber = 1;
 										var willLoop = 0;
 										var willShuffle = 0; // will use this soon
 										var willmute=1;
+										var barsize = 700;
 										function mute(){
 											var song=document.querySelector('audio');
 											if(song.muted)
@@ -434,4 +436,20 @@
 							
 							
 							
+							$('.player-progress').on('click',function(e) {
+								
+								var song = document.querySelector('audio');
+                                 if (!song.ended){
+									 var mouseX = e.pageX-bar.offsetLeft;
+									 var newtime = (mouseX*song.duration)/barsize;
+                                     song.currentTime = newtime;
+
+                                      var ct = song.currentTime;
+                                       var dt = song.duration;
+                                       var percentage = (ct/dt)*100;
+                                        $('.progress-filled').css('width',percentage+"%")
+										
+								 }								
+							
+							});
 							 
